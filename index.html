@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Download helper</title>
+  <style>
+    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial; max-width:720px; margin:40px auto; padding:20px; line-height:1.5; }
+    .card { border:1px solid #e0e0e0; border-radius:12px; padding:20px; box-shadow: 0 6px 20px rgba(0,0,0,0.03); }
+    .big { font-size:1.2rem; font-weight:600; margin-bottom:8px; }
+    .btn { display:inline-block; padding:10px 16px; border-radius:10px; text-decoration:none; border:1px solid #888; background:#fff; cursor:pointer; margin-top:12px; }
+    .primary { background:#0b84ff; color:#fff; border-color:#066bd6; }
+    .hint { color:#666; font-size:0.95rem; margin-top:8px; }
+    select { padding:8px; border-radius:8px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="big" id="headline">Detecting your system...</div>
+    <div id="detected" class="hint">If detection fails you can pick your OS manually below.</div>
+
+    <div id="suggestion" style="margin-top:14px;">
+      <!-- filled by script -->
+    </div>
+
+    <div style="margin-top:18px;">
+      <label for="manual">Choose your OS (manual):</label>
+      <select id="manual">
+        <option value="">-- Select OS --</option>
+        <option value="windows64">Windows 64-bit</option>
+        <option value="windows32">Windows 32-bit</option>
+        <option value="windowsarm">Windows ARM64</option>
+        <option value="android">Android/Chrome OS</option>
+        <option value="web">Web browser</option>
+        <option value="other">Other / Unsure</option>
+      </select>
+      <a id="manualDownload" class="btn" href="#" style="margin-left:8px" hidden>Download</a>
+    </div>
+
+    <div class="hint" style="margin-top:14px">
+      Tip: If you expect many users, use stable version links and update this page when new versions release.
+    </div>
+  </div>
+
+  <script>
+  // --- REPLACE WITH YOUR ACTUAL DOWNLOAD LINKS ---
+const DOWNLOADS = {
+  windows64: "https://go.microsoft.com/fwlink/?linkid=2068602",
+  windows32: "https://go.microsoft.com/fwlink/?linkid=2068603",
+  windowsarm: "https://go.microsoft.com/fwlink/?linkid=2070304",
+  android:   "https://play.google.com/store/apps/details?id=com.microsoft.rdc.androidx",
+  mac:       "https://apps.apple.com/us/app/windows-app/id1295203466?mt=12",
+  ios:       "https://apps.apple.com/app/windows-app/id1295203466",  // use correct App Store link
+  web:       "https://client.wvd.microsoft.com/arm/webclient/"
+};
+  // -------------------------------------------------------
+
+  function detectOS() {
+    const nav = navigator;
+    if (nav.userAgentData && nav.userAgentData.platform) {
+      const p = nav.userAg
+
